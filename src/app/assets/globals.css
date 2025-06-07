@@ -135,7 +135,7 @@
 
 
 .my-container {
-  @apply 2xl:px-[167px] px-[50px] w-full;
+  @apply 4xl:px-[167px] px-[50px] w-full;
 }
 
 .cursor-small .cursor-pointer {

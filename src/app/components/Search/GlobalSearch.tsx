@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 
 import { IoIosSearch } from "react-icons/io";
 
@@ -18,6 +18,7 @@ import { SearchResults } from "./SearchResults";
 
 import { ProductSearchSchema } from "@/schema/ProductSchema";
 import { useDebounce } from "@/lib/useDebounce"; // Import useDebounce
+import { useClickOutside } from "@/hooks/useClickOutSide";
 
 const categoriesData: Category[] = [
   { value: "all", label: "All Categories" },
@@ -28,9 +29,9 @@ const categoriesData: Category[] = [
 ];
 
 export function GlobalSearch() {
-  const [selectedCategory, setSelectedCategory] = useState<string>(categoriesData[0].value);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<ProductSearchSchema[]>([
+  let [selectedCategory, setSelectedCategory] = useState<string>(categoriesData[0].value);
+  let [searchTerm, setSearchTerm] = useState<string>("");
+  let [searchResults, setSearchResults] = useState<ProductSearchSchema[]>([
     {
       id: "1",
       name: `Product 1`,
@@ -48,9 +49,9 @@ export function GlobalSearch() {
       imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
     },
   ]);
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isTyping, setIsTyping] = useState<boolean>(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  let [isLoading, setLoading] = useState<boolean>(false);
+  let [isTyping, setIsTyping] = useState<boolean>(false);
+  let debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   // Search on products
   useEffect(() => {
@@ -63,15 +64,44 @@ export function GlobalSearch() {
 
     handleSearchSubmit(debouncedSearchTerm);
     setIsTyping(false);
+    setLoading(false);
   }, [debouncedSearchTerm, selectedCategory]);
 
   const handleSearchSubmit = async (search: string) => {
    
   };
 
+  // Close | Open search result 
+  let [isOpen,setOpen] = useState<boolean>(false);
+  const searchRef = useRef<HTMLDivElement>(null)
+
+  const handleOnClickOutSide = () => {
+    setOpen(false);
+  }
+
+  const handleOpenSearch = () => {
+    if (!searchResults.length) return false;
+    setOpen(true);
+  }
+
+  useClickOutside({
+    ref: searchRef,
+    onClickOutSide: () => {
+      handleOnClickOutSide();
+    }
+  });
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    setIsTyping(true); 
+
+    if (!e.target.value.length) {
+      setOpen(false);
+      return;
+    }
+
+    setIsTyping(true);
+    setLoading(true);
+    setOpen(true);
   };
 
   return (
@@ -92,26 +122,29 @@ export function GlobalSearch() {
 
       <span className="h-[20px] w-[1px] bg-[#CACACA]"></span>
 
-      <div className="searchbar relative w-[95%] d-flex items-center">
+      <div className="searchbar relative w-[95%] d-flex items-center" ref={searchRef}>
         <Input 
           type="text"
           placeholder="Search for items..."
           value={searchTerm}
           onChange={handleInputChange} 
+          onClick={handleOpenSearch}
           className="flex-1 border-0 shadow-none outline-none text-[14px] font placeholder:text-[#838383] font-lato font-weight-400 ouline-none focus:!outline-none focus:!ring-0 "
         />
 
-        <IoIosSearch
+        {!isLoading && <IoIosSearch
           className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
           size={20}
-        />
+        />}
 
         {(isTyping || isLoading) && <div className="search-loader"></div>}
+
+        <div className="absolute top-full left-0 w-full z-10">
+          {(!isTyping && !isLoading && isOpen) && <SearchResults results={searchResults} />}
+        </div>
       </div>
 
-      <div className="absolute top-full left-0 w-full z-10">
-        {(!isTyping && !isLoading) && <SearchResults results={searchResults} />}
-      </div>
+     
     </div>
   );
 }
