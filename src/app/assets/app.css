@@ -1,0 +1,8 @@
+.container {
+    @apply xl:px-[167px]
+}
+
+
+body {
+  background: red !important;
+}

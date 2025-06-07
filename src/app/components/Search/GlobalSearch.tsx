@@ -1,0 +1,116 @@
+"use client";
+
+import { FormEvent, useEffect, useState } from "react";
+
+import { IoIosSearch } from "react-icons/io";
+
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { Category } from "@/schema/CategorySchema";
+import { SearchResults } from "./SearchResults";
+
+import { ProductSearchSchema } from "@/schema/ProductSchema";
+import { useDebounce } from "@/lib/useDebounce"; // Import useDebounce
+
+const categoriesData: Category[] = [
+  { value: "all", label: "All Categories" },
+  { value: "dairy&milk", label: "Dairy & Milk" },
+  { value: "groceries", label: "Groceries" },
+  { value: "healtyfood", label: "Healthy Food" },
+  { value: "homegoods", label: "Home Goods" },
+];
+
+export function GlobalSearch() {
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoriesData[0].value);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<ProductSearchSchema[]>([
+    {
+      id: "1",
+      name: `Product 1`,
+      price: 9.99,
+      description: "Description for result 1",
+      category: selectedCategory,
+      imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
+    },
+    {
+      id: "2",
+      name: `Product 2`,
+      price: 19.99,
+      description: "Description for result 2",
+      category: selectedCategory,
+      imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
+    },
+  ]);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  // Search on products
+  useEffect(() => {
+    if (debouncedSearchTerm.trim() === "") {
+      // setSearchResults([]);
+      setLoading(false);
+      setIsTyping(false); // Reset typing state
+      return;
+    }
+
+    handleSearchSubmit(debouncedSearchTerm);
+    setIsTyping(false);
+  }, [debouncedSearchTerm, selectedCategory]);
+
+  const handleSearchSubmit = async (search: string) => {
+   
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setIsTyping(true); 
+  };
+
+  return (
+    <div className="relative flex items-center border border-[#CACACA] rounded-[4px] h-[50px] small-cursor-pointer-parent">
+      <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+        <SelectTrigger className="!h-full w-[155px] border-0 rounded-none shadow-none font-[14px] font-bold">
+          <SelectValue placeholder="Select Category" />
+        </SelectTrigger>
+        <SelectContent>
+          {categoriesData.map((category) => (
+            <SelectItem key={category.value} value={category.value}>
+              {category.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      <span className="h-[20px] w-[1px] bg-[#CACACA]"></span>
+
+      <div className="searchbar relative w-[95%] d-flex items-center">
+        <Input
+          type="text"
+          placeholder="Search for items..."
+          value={searchTerm}
+          onChange={handleInputChange} 
+          className="flex-1 border-0 shadow-none outline-none text-[14px] font placeholder:text-[#838383] font-lato font-weight-400 ouline-none focus:!outline-none focus:!ring-0 "
+        />
+
+        <IoIosSearch
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
+          size={20}
+        />
+
+        {(isTyping || isLoading) && <div className="search-loader"></div>}
+      </div>
+
+      <div className="absolute top-full left-0 w-full z-10">
+        {(!isTyping && !isLoading) && <SearchResults results={searchResults} loading={isLoading} />}
+      </div>
+    </div>
+  );
+}
