@@ -12,25 +12,16 @@ import { Button } from '@/components/ui/button';
 import { AnimatedBadge } from '@/components/ui/animated-counter';
 
 import Link from "next/link";
+import { useAppSelector } from '@/stores/hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/stores/store';
 
 export function CartPopover() {
-    let productsCart:ProdutCartSchema[] = [
-        {
-          slug: "product-1",
-          name: `Product 1`,
-          price: 9.99,
-          imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
-        },
-        {
-          slug: "product-2",
-          name: `Product 2`,
-          price: 19.99,
-          imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
-        },
-    ]
+    const productsCart = useSelector((state: RootState) => state.product.myCart);
 
     return (
-        <Popover>        <PopoverTrigger asChild>
+        <Popover>        
+        <PopoverTrigger asChild>
             <button className="p-2 relative cursor-pointer bg-gray-200 hover:bg-gray-300 transition-all rounded-full">
                 <AnimatedBadge 
                     count={productsCart.length}
@@ -53,8 +44,7 @@ export function CartPopover() {
                 {!productsCart.length &&  <div className="grid gap-2">
                     <p className="text-[13px] text-gray-500 text-center">Your cart is empty</p>
                 </div>}
-                
-                {productsCart.length > 0 && productsCart.map((product) => {
+                  {productsCart.length > 0 && productsCart.map((product) => {
                     return (
                         <ProductCartBox
                             key={product.slug}
@@ -62,6 +52,7 @@ export function CartPopover() {
                             name={product.name}
                             price={product.price}
                             imageUrl={product.imageUrl}
+                            count={product.count}
                         />
                     )
                 })}

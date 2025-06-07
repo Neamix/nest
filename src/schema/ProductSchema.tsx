@@ -17,6 +17,7 @@ export type ProdutCartSchema = {
     imageUrl: string,
     name: string,
     price: number,
+    count: number
 }
 
 export type ProductSearchSchema = {
