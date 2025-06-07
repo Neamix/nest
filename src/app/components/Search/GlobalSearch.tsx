@@ -76,8 +76,9 @@ export function GlobalSearch() {
 
   return (
     <div className="relative flex items-center border border-[#CACACA] rounded-[4px] h-[50px] small-cursor-pointer-parent">
+      
       <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-        <SelectTrigger className="!h-full w-[155px] border-0 rounded-none shadow-none font-[14px] font-bold">
+        <SelectTrigger className="!h-full w-[155px] border-0 rounded-none shadow-none font-bold">
           <SelectValue placeholder="Select Category" />
         </SelectTrigger>
         <SelectContent>
@@ -92,7 +93,7 @@ export function GlobalSearch() {
       <span className="h-[20px] w-[1px] bg-[#CACACA]"></span>
 
       <div className="searchbar relative w-[95%] d-flex items-center">
-        <Input
+        <Input 
           type="text"
           placeholder="Search for items..."
           value={searchTerm}
@@ -109,7 +110,7 @@ export function GlobalSearch() {
       </div>
 
       <div className="absolute top-full left-0 w-full z-10">
-        {(!isTyping && !isLoading) && <SearchResults results={searchResults} loading={isLoading} />}
+        {(!isTyping && !isLoading) && <SearchResults results={searchResults} />}
       </div>
     </div>
   );
