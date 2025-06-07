@@ -1,0 +1,80 @@
+"use client"
+
+import Image from 'next/image';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { ProdutCartSchema } from '@/schema/ProductSchema';
+import { ProductCartBox } from '../Product/ProductCartBox';
+import { Button } from '@/components/ui/button';
+import { AnimatedBadge } from '@/components/ui/animated-counter';
+
+import Link from "next/link";
+
+export function CartPopover() {
+    let productsCart:ProdutCartSchema[] = [
+        {
+          slug: "product-1",
+          name: `Product 1`,
+          price: 9.99,
+          imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
+        },
+        {
+          slug: "product-2",
+          name: `Product 2`,
+          price: 19.99,
+          imageUrl: "https://media.istockphoto.com/id/183424709/photo/bag-of-groceries.jpg?s=612x612&w=0&k=20&c=KtirSlaNwcrzEc1K3s9WOUpv_eH6DNheaVWbTnsEKSE=",
+        },
+    ]
+
+    return (
+        <Popover>        <PopoverTrigger asChild>
+            <button className="p-2 relative cursor-pointer bg-gray-200 hover:bg-gray-300 transition-all rounded-full">
+                <AnimatedBadge 
+                    count={productsCart.length}
+                    className="bg-primary-green"
+                />
+                <Image 
+                    src="/icons/cart.svg" 
+                    alt="Cart" 
+                    width={15} 
+                    height={15} 
+                />
+            </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80">
+            <div className="grid gap-4">
+                <div className="space-y-2">
+                    <h4 className="leading-none font-semibold mb-0">Your Nest cart </h4>
+                </div>
+
+                {!productsCart.length &&  <div className="grid gap-2">
+                    <p className="text-[13px] text-gray-500 text-center">Your cart is empty</p>
+                </div>}
+                
+                {productsCart.length > 0 && productsCart.map((product) => {
+                    return (
+                        <ProductCartBox
+                            key={product.slug}
+                            slug={product.slug}
+                            name={product.name}
+                            price={product.price}
+                            imageUrl={product.imageUrl}
+                        />
+                    )
+                })}
+
+
+                <Button className='btn-primary'>
+                    <Link href={'/checout'}>
+                        Check out
+                    </Link>
+                </Button>
+
+            </div>
+        </PopoverContent>
+        </Popover>
+    )
+}

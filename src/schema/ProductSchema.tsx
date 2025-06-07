@@ -12,6 +12,13 @@ export type Product = {
     },
 }
 
+export type ProdutCartSchema = {
+    slug: string,
+    imageUrl: string,
+    name: string,
+    price: number,
+}
+
 export type ProductSearchSchema = {
     id: string,
     imageUrl: string,

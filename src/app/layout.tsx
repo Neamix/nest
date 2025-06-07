@@ -9,6 +9,7 @@ import "@/app/assets/app.css";
 import { Toolbarnav } from "@/app/components/Navbars/Toolbarnav";
 import { Lato } from "next/font/google";
 import { GlobalSearch } from "./components/Search/GlobalSearch";
+import { MiddleNav } from "./components/Navbars/MiddleNav";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -35,26 +36,7 @@ export default function RootLayout({children}:{ children: React.ReactNode }) {
       >
         <div className="">
           <Toolbarnav />
-          <div className="my-container h-[122.5px] flex items-center justify-between">
-
-            
-            <div className="hero-logo pr-[70px]">
-              <Image src="/logo/logo.png" alt="Nest Mart & Grocery Logo" width={150} height={50} />
-            </div>
-
-            <div className="hero-search w-full  flex-1">
-              <GlobalSearch />
-            </div>
-
-            <div className="">
-
-            </div>
-
-            <div className="">
-
-            </div>
-
-          </div>
+          <MiddleNav/>
         </div>
         {children}
       </body>

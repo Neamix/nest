@@ -49,6 +49,7 @@
 
   --color-primary-gray: #7E7E7E;
   --color-primary-green: #3BB77E;
+  --color-secondary-green: #DEF9EC;
 }
 
 :root {
@@ -168,4 +169,12 @@
 
 .search-loader {
   @apply w-[20px] h-[20px] border-[2px] border-gray-200 border-t-primary-green absolute top-[8px] right-4 rounded-full animate-spin; 
+}
+
+.counter {
+  @apply w-[15px] h-[15px] bg-primary-green rounded-full text-[10px] text-white font-lato font-[500] flex justify-center items-center transition-all;
+}
+
+.btn-primary {
+  @apply bg-primary-green hover:bg-secondary-green hover:text-primary-green cursor-pointer
 }
