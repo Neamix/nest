@@ -52,13 +52,15 @@ export function GlobalSearch() {
   let [isLoading, setLoading] = useState<boolean>(false);
   let [isTyping, setIsTyping] = useState<boolean>(false);
   let debouncedSearchTerm = useDebounce(searchTerm, 500);
-
+  let [isOpen,setOpen] = useState<boolean>(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  
   // Search on products
   useEffect(() => {
     if (debouncedSearchTerm.trim() === "") {
       // setSearchResults([]);
       setLoading(false);
-      setIsTyping(false); // Reset typing state
+      setIsTyping(false);
       return;
     }
 
@@ -71,10 +73,16 @@ export function GlobalSearch() {
    
   };
 
-  // Close | Open search result 
-  let [isOpen,setOpen] = useState<boolean>(false);
-  const searchRef = useRef<HTMLDivElement>(null)
+  /*** Handle searchbox open and close actions ***/
 
+  // When the user click out side the component close 
+  // search box if it is open
+  useClickOutside({
+    ref: searchRef,
+    onClickOutSide: () => {
+      handleOnClickOutSide();
+    }
+  });
   const handleOnClickOutSide = () => {
     setOpen(false);
   }
@@ -84,13 +92,12 @@ export function GlobalSearch() {
     setOpen(true);
   }
 
-  useClickOutside({
-    ref: searchRef,
-    onClickOutSide: () => {
-      handleOnClickOutSide();
-    }
-  });
 
+  /*** Handle typing and search action **/
+
+  // On change in search term i need you to go to database and get 
+  // the result for me and during typing and loading the data activate
+  // the loadder
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
 

@@ -9,17 +9,18 @@ import {
 } from "@/components/ui/select"
 import { useState } from "react";
 
-export function Currency() {
-    let [currency, setCurrency] = useState('usd');
+export function LocalizationList() {
+    let [localization, setLocalization] = useState('en');
+    
     return (
         <div className="cursor-small">
-            <Select value={currency} onValueChange={setCurrency} >
+            <Select value={localization} onValueChange={setLocalization} >
                 <SelectTrigger className="w-[180px] border-0">
                     <SelectValue placeholder="Theme" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="usd">USD</SelectItem>
-                    <SelectItem value="egp">EGP</SelectItem>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="ar">Arabic</SelectItem>
                 </SelectContent>
             </Select>
         </div>

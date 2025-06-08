@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Localization as LocalizationDropdown } from '@/app/components/Dropdownlist/Localization';
-import { Currency as CurrencyDropdown } from '@/app/components/Dropdownlist/Currency';
+import { LocalizationList } from '@/app/components/Dropdownlist/LocalizationList';
+import { CurrencyList } from '@/app/components/Dropdownlist/CurrencyList';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +16,6 @@ export function Toolbarnav() {
         {name: 'Wishlist', href: '/wishlist'},
         {name: 'Order Tracking', href: '/tracking'}
     ];
-    
     
     return (
         <div className="toolbar flex justify-between items-center w-full  h-[37px] my-container border-b border-[#ECECEC]">
@@ -75,11 +74,11 @@ export function Toolbarnav() {
                 </div>
                 <ul className="toolbar-social flex">
                     <li className='localization flex items-center'>
-                        <LocalizationDropdown />
+                        <LocalizationList />
                     </li>
                     <li className='localization flex justify-end items-center w-auto'>
                         <span className="block w-[1px] h-[10px] bg-[#DEDFE2] ml-[10px] mr-[8.3px]"></span>
-                        <CurrencyDropdown />
+                        <CurrencyList />
                     </li>
                 </ul>
             </div>

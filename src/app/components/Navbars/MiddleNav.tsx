@@ -5,9 +5,7 @@ import { ProfileLink } from "../Account/ProfileLink";
 
 export function MiddleNav() {
     return (
-        <div className="my-container h-[122.5px] flex items-center justify-between border-b border-[#ECECEC]">
-
-            
+        <div className="my-container h-[122.5px] flex items-center justify-between border-b border-[#ECECEC]"> 
             <div className="hero-logo pr-[70px]">
               <Image 
               src="/logo/logo.png" 
