@@ -25,25 +25,25 @@ export function CategoryList () {
         <>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button className="btn-primary btn-ddl hover:!bg-primary-green hover:!text-white text-left flex justify-between !px-[20px]">
-                    <div className="flex gap-[7px]">
+                    <Button className="btn-primary btn-ddl hover:!bg-primary-green hover:!text-white text-left flex justify-between !px-[20px]">
+                        <div className="flex gap-[7px]">
+                            <Image 
+                                src="/icons/categories.svg" 
+                                alt="Nest Mart & Grocery Logo" 
+                                width={16} 
+                                height={16}
+                            />
+                            <span>
+                                {categoriesData.find((item) => item.value === selectedCategory)?.label}
+                            </span>
+                        </div>
                         <Image 
-                            src="/icons/categories.svg" 
+                            src="/icons/chevron-down-white.svg" 
                             alt="Nest Mart & Grocery Logo" 
-                            width={16} 
-                            height={16}
+                            width={10} 
+                            height={10}
                         />
-                        <span>
-                            {categoriesData.find((item) => item.value === selectedCategory)?.label}
-                        </span>
-                    </div>
-                    <Image 
-                        src="/icons/chevron-down-white.svg" 
-                        alt="Nest Mart & Grocery Logo" 
-                        width={10} 
-                        height={10}
-                    />
-                </Button>
+                    </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 max-h-[300px]" align="start">
                     {
