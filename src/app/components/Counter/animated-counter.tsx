@@ -65,9 +65,9 @@ export function AnimatedCounter({
         <AnimatePresence mode="wait">
           <motion.span
             key={displayValue}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ y: 20 }}
+            animate={{  y: 0 }}
+            exit={{ y: -20 }}
             transition={{ duration: 0.2 }}
             className={cn("font-semibold", counterSizeClasses[size])}
           >
@@ -149,8 +149,8 @@ export function AnimatedNumber({
   return (
     <motion.span
       key={value}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ scale: 0.8 }}
+      animate={{ scale: 1 }}
       transition={{ duration }}
       className={className}
     >
@@ -182,9 +182,9 @@ export function AnimatedBadge({
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0, opacity: 0 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1,}}
+        exit={{ scale: 0}}
         transition={{ 
           type: "spring",
           stiffness: 300,
@@ -198,9 +198,9 @@ export function AnimatedBadge({
         <AnimatePresence mode="wait">
           <motion.span
             key={count}
-            initial={{ y: -10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 10, opacity: 0 }}
+            initial={{ y: -10 }}
+            animate={{ y: 0 }}
+            exit={{ y: 10 }}
             transition={{ duration: 0.15 }}
             className="font-medium"
           >

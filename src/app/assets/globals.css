@@ -178,3 +178,7 @@
 .btn-primary {
   @apply bg-primary-green hover:bg-secondary-green hover:text-primary-green cursor-pointer
 }
+
+.btn-ddl {
+  @apply 4xl:w-[255.42px] 4xl:h-[44px] 4xl:text-[16px]  text-white rounded-[5px] px-[20px] flex items-center font-[500]
+}

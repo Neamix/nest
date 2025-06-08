@@ -13,14 +13,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { Category } from "@/schema/CategorySchema";
+import { CategorySchema } from "@/schema/CategorySchema";
 import { SearchResults } from "./SearchResults";
 
 import { ProductSearchSchema } from "@/schema/ProductSchema";
 import { useDebounce } from "@/lib/useDebounce"; // Import useDebounce
 import { useClickOutside } from "@/hooks/useClickOutSide";
 
-const categoriesData: Category[] = [
+const categoriesData: CategorySchema[] = [
   { value: "all", label: "All Categories" },
   { value: "dairy&milk", label: "Dairy & Milk" },
   { value: "groceries", label: "Groceries" },

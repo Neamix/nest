@@ -8,9 +8,9 @@ import "@/app/assets/app.css";
 
 import { Toolbarnav } from "@/app/components/Navbars/Toolbarnav";
 import { Lato } from "next/font/google";
-import { GlobalSearch } from "./components/Search/GlobalSearch";
 import { MiddleNav } from "./components/Navbars/MiddleNav";
 import { ReduxProvider } from "@/stores/ReduxProvider";
+import { LowerNav } from "./components/Navbars/LowerNav";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -38,7 +38,8 @@ export default function RootLayout({children}:{ children: React.ReactNode }) {
         <ReduxProvider>
           <div className="">
             <Toolbarnav />
-            <MiddleNav/>
+            <MiddleNav />
+            <LowerNav />
           </div>
           {children}
         </ReduxProvider>

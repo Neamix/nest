@@ -2,7 +2,7 @@ import { ProdutCartSchema } from "@/schema/ProductSchema";
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { AnimatedCounter } from "@/app/components/Counter/animated-counter";
 import { Button } from "@/components/ui/button";
 import { IoMdTrash } from "react-icons/io";
 import { useAppDispatch } from "@/stores/hooks";
@@ -12,11 +12,8 @@ export function ProductCartBox({slug, name, price, imageUrl, count}: ProdutCartS
     const dispatch = useAppDispatch();
 
     const handleCountChange = (newCount: number) => {
-        if (newCount === 0) {
-            dispatch(removeCartItem(slug));
-        } else {
-            dispatch(updateCartItemCount({ slug, count: newCount }));
-        }
+        if (newCount > 0) dispatch(updateCartItemCount({slug: slug,count: newCount}))
+        else handleRemove();
     };
 
     const handleRemove = () => {
@@ -51,15 +48,6 @@ export function ProductCartBox({slug, name, price, imageUrl, count}: ProdutCartS
                     size="sm"
                     variant="outline"
                 />
-                
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleRemove}
-                    className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-50"
-                >
-                    <IoMdTrash size={16} />
-                </Button>
             </div>
         </div>
     );

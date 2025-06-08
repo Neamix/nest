@@ -33,16 +33,19 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     setCartItem: (state,action:PayloadAction<ProdutCartSchema>) => {
-        state.myCart.push(action.payload);
+      state.myCart.push(action.payload);
     },
 
     removeCartItem: (state,action:PayloadAction<string>) => {
-        state.myCart = state.myCart.filter((item) => item.slug !== action.payload)
+      state.myCart = state.myCart.filter((item) => item.slug !== action.payload)
     },
 
     updateCartItemCount: (state,action:PayloadAction<{slug: string, count: number}>) => {
-        const product = state.myCart.find(p => p.slug === action.payload.slug);
-        if(product) product.count = action.payload.count;
+      const productIndex = state.myCart.findIndex(p => p.slug === action.payload.slug);
+
+      if (state.myCart[productIndex]) {
+        state.myCart[productIndex].count = action.payload.count;
+      }
     }
   },
 });
