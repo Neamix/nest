@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CategoryNav } from "./CategoryNav";
-import { CategoryList } from "../Dropdownlist/CategoriesList";
+import { CategoryList } from "../Dropdownlist/CategoryList";
 
 export function LowerNav () {
     return (

@@ -7,19 +7,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CategorySchema } from "@/schema/CategorySchema";
+import { getCategoryList } from "@/lib/categoryUtils";
+import { shortcutText } from "@/lib/shortcutText";
+import { SectionSchema } from "@/schema/CategorySchema";
 import Image from "next/image";
 import { useState } from "react";
 
 export function CategoryList () {
     let [selectedCategory,setSelectedCategory] = useState("all");
-    const categoriesData: CategorySchema[] = [
-      { value: "all", label: "Browse All Categories" },
-      { value: "dairy&milk", label: "Dairy & Milk" },
-      { value: "groceries", label: "Groceries" },
-      { value: "healtyfood", label: "Healthy Food" },
-      { value: "homegoods", label: "Home Goods" },
-    ];
+    const categoryData: SectionSchema[] = getCategoryList();
+
+
+    /*** Handle the selected category **/
+
+    // This Handler is mean to set the value of browsing category
+    let handleSelectedSection = ():string => {
+        let category:SectionSchema | undefined = categoryData.find((category) => category.label === selectedCategory);
+
+        if (category) return category.label;
+        else return "Browse All Sections";
+    }
 
     return (
         <>
@@ -34,7 +41,7 @@ export function CategoryList () {
                                 height={16}
                             />
                             <span>
-                                {categoriesData.find((item) => item.value === selectedCategory)?.label}
+                                {shortcutText(handleSelectedSection(),21,12)}
                             </span>
                         </div>
                         <Image 
@@ -46,11 +53,14 @@ export function CategoryList () {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 max-h-[300px]" align="start">
+                    <DropdownMenuItem onClick={() => setSelectedCategory("")}>
+                        Browse All Sections
+                    </DropdownMenuItem>
                     {
-                        categoriesData.map((item,index) => {
+                        categoryData.map((category,index) => {
                             return (
-                                <DropdownMenuItem key={index} onClick={() => setSelectedCategory(item.value)}>
-                                    {item.label}
+                                <DropdownMenuItem key={index} onClick={() => setSelectedCategory(category.label)}>
+                                    {category.label}
                                 </DropdownMenuItem>
                             );
                         })

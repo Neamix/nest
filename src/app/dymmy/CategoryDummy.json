@@ -1,0 +1,588 @@
+[
+    {
+        "value": "fresh-produce",
+        "label": "Fresh Produce",
+        "sections": [
+            {
+                "value": "fresh-fruits",
+                "label": "Fresh Fruits",
+                "categories": [
+                    {
+                        "value": "apples",
+                        "label": "Apples"
+                    },
+                    {
+                        "value": "bananas",
+                        "label": "Bananas"
+                    },
+                    {
+                        "value": "oranges",
+                        "label": "Oranges"
+                    },
+                    {
+                        "value": "berries",
+                        "label": "Berries"
+                    }
+                ]
+            },
+            {
+                "value": "fresh-vegetables",
+                "label": "Fresh Vegetables",
+                "categories": [
+                    {
+                        "value": "leafy-greens",
+                        "label": "Leafy Greens"
+                    },
+                    {
+                        "value": "root-vegetables",
+                        "label": "Root Vegetables"
+                    },
+                    {
+                        "value": "peppers",
+                        "label": "Peppers"
+                    }
+                ]
+            },
+            {
+                "value": "organic-produce",
+                "label": "Organic Produce",
+                "categories": [
+                    {
+                        "value": "organic-fruits",
+                        "label": "Organic Fruits"
+                    },
+                    {
+                        "value": "organic-vegetables",
+                        "label": "Organic Vegetables"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "meat-seafood",
+        "label": "Meat & Seafood",
+        "sections": [
+            {
+                "value": "fresh-meat",
+                "label": "Fresh Meat",
+                "categories": [
+                    {
+                        "value": "beef",
+                        "label": "Beef"
+                    },
+                    {
+                        "value": "pork",
+                        "label": "Pork"
+                    },
+                    {
+                        "value": "chicken",
+                        "label": "Chicken"
+                    },
+                    {
+                        "value": "turkey",
+                        "label": "Turkey"
+                    }
+                ]
+            },
+            {
+                "value": "seafood",
+                "label": "Seafood",
+                "categories": [
+                    {
+                        "value": "fish",
+                        "label": "Fish"
+                    },
+                    {
+                        "value": "shrimp",
+                        "label": "Shrimp"
+                    },
+                    {
+                        "value": "shellfish",
+                        "label": "Shellfish"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "dairy-eggs",
+        "label": "Dairy & Eggs",
+        "sections": [
+            {
+                "value": "milk-cream",
+                "label": "Milk & Cream",
+                "categories": [
+                    {
+                        "value": "whole-milk",
+                        "label": "Whole Milk"
+                    },
+                    {
+                        "value": "skim-milk",
+                        "label": "Skim Milk"
+                    },
+                    {
+                        "value": "heavy-cream",
+                        "label": "Heavy Cream"
+                    }
+                ]
+            },
+            {
+                "value": "cheese",
+                "label": "Cheese",
+                "categories": [
+                    {
+                        "value": "cheddar",
+                        "label": "Cheddar"
+                    },
+                    {
+                        "value": "mozzarella",
+                        "label": "Mozzarella"
+                    },
+                    {
+                        "value": "parmesan",
+                        "label": "Parmesan"
+                    }
+                ]
+            },
+            {
+                "value": "yogurt",
+                "label": "Yogurt",
+                "categories": [
+                    {
+                        "value": "greek-yogurt",
+                        "label": "Greek Yogurt"
+                    },
+                    {
+                        "value": "regular-yogurt",
+                        "label": "Regular Yogurt"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "bakery",
+        "label": "Bakery",
+        "sections": [
+            {
+                "value": "fresh-bread",
+                "label": "Fresh Bread",
+                "categories": [
+                    {
+                        "value": "white-bread",
+                        "label": "White Bread"
+                    },
+                    {
+                        "value": "whole-wheat",
+                        "label": "Whole Wheat"
+                    },
+                    {
+                        "value": "sourdough",
+                        "label": "Sourdough"
+                    }
+                ]
+            },
+            {
+                "value": "pastries",
+                "label": "Pastries",
+                "categories": [
+                    {
+                        "value": "croissants",
+                        "label": "Croissants"
+                    },
+                    {
+                        "value": "muffins",
+                        "label": "Muffins"
+                    },
+                    {
+                        "value": "donuts",
+                        "label": "Donuts"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "pantry-staples",
+        "label": "Pantry Staples",
+        "sections": [
+            {
+                "value": "grains-rice",
+                "label": "Grains & Rice",
+                "categories": [
+                    {
+                        "value": "brown-rice",
+                        "label": "Brown Rice"
+                    },
+                    {
+                        "value": "white-rice",
+                        "label": "White Rice"
+                    },
+                    {
+                        "value": "quinoa",
+                        "label": "Quinoa"
+                    }
+                ]
+            },
+            {
+                "value": "pasta",
+                "label": "Pasta",
+                "categories": [
+                    {
+                        "value": "spaghetti",
+                        "label": "Spaghetti"
+                    },
+                    {
+                        "value": "penne",
+                        "label": "Penne"
+                    },
+                    {
+                        "value": "macaroni",
+                        "label": "Macaroni"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "frozen-foods",
+        "label": "Frozen Foods",
+        "sections": [
+            {
+                "value": "frozen-vegetables",
+                "label": "Frozen Vegetables",
+                "categories": [
+                    {
+                        "value": "frozen-broccoli",
+                        "label": "Frozen Broccoli"
+                    },
+                    {
+                        "value": "frozen-peas",
+                        "label": "Frozen Peas"
+                    },
+                    {
+                        "value": "frozen-corn",
+                        "label": "Frozen Corn"
+                    }
+                ]
+            },
+            {
+                "value": "frozen-meals",
+                "label": "Frozen Meals",
+                "categories": [
+                    {
+                        "value": "tv-dinners",
+                        "label": "TV Dinners"
+                    },
+                    {
+                        "value": "frozen-pizza",
+                        "label": "Frozen Pizza"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "snacks-candy",
+        "label": "Snacks & Candy"
+    },
+    {
+        "value": "beverages",
+        "label": "Beverages",
+        "sections": [
+            {
+                "value": "soft-drinks",
+                "label": "Soft Drinks",
+                "categories": [
+                    {
+                        "value": "cola",
+                        "label": "Cola"
+                    },
+                    {
+                        "value": "lemon-lime",
+                        "label": "Lemon Lime"
+                    },
+                    {
+                        "value": "orange-soda",
+                        "label": "Orange Soda"
+                    }
+                ]
+            },
+            {
+                "value": "juices",
+                "label": "Juices",
+                "categories": [
+                    {
+                        "value": "orange-juice",
+                        "label": "Orange Juice"
+                    },
+                    {
+                        "value": "apple-juice",
+                        "label": "Apple Juice"
+                    },
+                    {
+                        "value": "cranberry-juice",
+                        "label": "Cranberry Juice"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "canned-goods",
+        "label": "Canned Goods"
+    },
+    {
+        "value": "condiments-sauces",
+        "label": "Condiments & Sauces"
+    },
+    {
+        "value": "breakfast-cereal",
+        "label": "Breakfast & Cereal"
+    },
+    {
+        "value": "health-beauty",
+        "label": "Health & Beauty",
+        "sections": [
+            {
+                "value": "personal-care",
+                "label": "Personal Care",
+                "categories": [
+                    {
+                        "value": "shampoo",
+                        "label": "Shampoo"
+                    },
+                    {
+                        "value": "soap",
+                        "label": "Soap"
+                    },
+                    {
+                        "value": "toothpaste",
+                        "label": "Toothpaste"
+                    }
+                ]
+            },
+            {
+                "value": "vitamins",
+                "label": "Vitamins",
+                "categories": [
+                    {
+                        "value": "multivitamins",
+                        "label": "Multivitamins"
+                    },
+                    {
+                        "value": "vitamin-c",
+                        "label": "Vitamin C"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "household-cleaning",
+        "label": "Household & Cleaning"
+    },
+    {
+        "value": "baby-kids",
+        "label": "Baby & Kids"
+    },
+    {
+        "value": "pet-supplies",
+        "label": "Pet Supplies"
+    },
+    {
+        "value": "pharmacy",
+        "label": "Pharmacy"
+    },
+    {
+        "value": "organic-natural",
+        "label": "Organic & Natural"
+    },
+    {
+        "value": "international-foods",
+        "label": "International Foods",
+        "sections": [
+            {
+                "value": "asian-foods",
+                "label": "Asian Foods",
+                "categories": [
+                    {
+                        "value": "soy-sauce",
+                        "label": "Soy Sauce"
+                    },
+                    {
+                        "value": "ramen",
+                        "label": "Ramen"
+                    },
+                    {
+                        "value": "rice-vinegar",
+                        "label": "Rice Vinegar"
+                    }
+                ]
+            },
+            {
+                "value": "mexican-foods",
+                "label": "Mexican Foods",
+                "categories": [
+                    {
+                        "value": "tortillas",
+                        "label": "Tortillas"
+                    },
+                    {
+                        "value": "salsa",
+                        "label": "Salsa"
+                    },
+                    {
+                        "value": "beans",
+                        "label": "Beans"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "deli-prepared",
+        "label": "Deli & Prepared Foods"
+    },
+    {
+        "value": "gluten-free",
+        "label": "Gluten Free"
+    },
+    {
+        "value": "vegan-vegetarian",
+        "label": "Vegan & Vegetarian"
+    },
+    {
+        "value": "keto-low-carb",
+        "label": "Keto & Low Carb"
+    },
+    {
+        "value": "sports-nutrition",
+        "label": "Sports & Nutrition"
+    },
+    {
+        "value": "seasonal-holiday",
+        "label": "Seasonal & Holiday"
+    },
+    {
+        "value": "bulk-foods",
+        "label": "Bulk Foods"
+    },
+    {
+        "value": "gourmet-specialty",
+        "label": "Gourmet & Specialty"
+    },
+    {
+        "value": "soup-broth",
+        "label": "Soup & Broth"
+    },
+    {
+        "value": "salad-dressing",
+        "label": "Salad & Dressing"
+    },
+    {
+        "value": "pickles-olives",
+        "label": "Pickles & Olives"
+    },
+    {
+        "value": "nuts-dried-fruit",
+        "label": "Nuts & Dried Fruit"
+    },
+    {
+        "value": "protein-bars",
+        "label": "Protein Bars & Shakes"
+    },
+    {
+        "value": "kombucha-probiotics",
+        "label": "Kombucha & Probiotics"
+    },
+    {
+        "value": "plant-milk",
+        "label": "Plant-Based Milk"
+    },
+    {
+        "value": "ready-meals",
+        "label": "Ready Meals"
+    },
+    {
+        "value": "baking-desserts",
+        "label": "Baking & Desserts"
+    },
+    {
+        "value": "grilling-bbq",
+        "label": "Grilling & BBQ"
+    },
+    {
+        "value": "paper-products",
+        "label": "Paper Products"
+    },
+    {
+        "value": "laundry-care",
+        "label": "Laundry Care"
+    },
+    {
+        "value": "air-fresheners",
+        "label": "Air Fresheners"
+    },
+    {
+        "value": "pest-control",
+        "label": "Pest Control"
+    },
+    {
+        "value": "automotive",
+        "label": "Automotive"
+    },
+    {
+        "value": "electronics",
+        "label": "Electronics"
+    },
+    {
+        "value": "home-garden",
+        "label": "Home & Garden"
+    },
+    {
+        "value": "office-school",
+        "label": "Office & School Supplies"
+    },
+    {
+        "value": "toys-games",
+        "label": "Toys & Games"
+    },
+    {
+        "value": "greeting-cards",
+        "label": "Greeting Cards & Gift Wrap"
+    },
+    {
+        "value": "magazines-books",
+        "label": "Magazines & Books"
+    },
+    {
+        "value": "floral",
+        "label": "Floral"
+    },
+    {
+        "value": "gift-cards",
+        "label": "Gift Cards"
+    },
+    {
+        "value": "alcohol",
+        "label": "Alcohol"
+    },
+    {
+        "value": "tobacco",
+        "label": "Tobacco"
+    },
+    {
+        "value": "lottery",
+        "label": "Lottery"
+    },
+    {
+        "value": "ice",
+        "label": "Ice"
+    },
+    {
+        "value": "fuel",
+        "label": "Fuel"
+    }
+]
