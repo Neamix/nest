@@ -7,13 +7,14 @@ import Image from "next/image";
 import { MegaMenu } from "./MegaMenu";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
     const menuRef = useRef<HTMLDivElement>(null);
     const [scrollableLeft,setScrollableLeft] = useState<boolean>(false);
     const [scrollableRight,setScrollableRight] = useState<boolean>(true);
-    let [megeMenuIndex,setMegaMenuIndex] = useState<number | null>(4);
+    let [megeMenuIndex, setMegaMenuIndex] = useState<number | null>(4);
+    const [prevMenuIndex, setPrevMenuIndex] = useState<number>(0);
+    const [directionToView, setDirectionToView] = useState<'left' | 'right'>('right');
 
     useEffect(() => {
         handlePushArrowVisiablitiy();
@@ -30,7 +31,6 @@ export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
         }
 
         // If scrolled all the way to the right
-        console.log(menuRef.current.scrollLeft + menuRef.current.clientWidth , menuRef.current.scrollWidth)
         if (menuRef.current.scrollLeft + menuRef.current.clientWidth >= menuRef.current.scrollWidth - 10) {
             setScrollableRight(false);
             setScrollableLeft(true);
@@ -97,37 +97,53 @@ export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
                         />
                     </div>
                 }
-
                 <ul 
                     className="flex items-center flex-nowrap 4xl:gap-[3.3rem] gap-[1.9rem] animate-scroll h-full"
-                    onMouseLeave={() => {
-                        setMegaMenuIndex(null)
-                    }}
                 >
                 {
-                    categoriesList.map((category,index) => {
+                    categoriesList.map((category, index) => {
                         return (
-                            <li className="text-nowrap 4xl:text-[1rem] text-[0.90rem] font-[700] flex-shrink-0" key={index}>
-                                <span>{shortcutText(category.label,15,12)}</span>
-                                <AnimatePresence>
-                                    {
-                                        megeMenuIndex == index && 
-                                        <motion.div 
-                                            initial={{ opacity: 0}}
-                                            animate={{ opacity: 1}}
-                                            exit={{ opacity: 0 }} 
-                                            className="fixed left-0 right-0 w-screen bg-[#0004] mt-[29px] megamenu z-50"
-                                        >
-                                            { 
-                                                <MegaMenu>
-                                                    <p>dasdasd</p>
-                                                </MegaMenu>
-                                            }
-                                        </motion.div>
-                                    }
-                                </AnimatePresence>
+                            <li
+                                className="text-nowrap 4xl:text-[1rem] text-[0.90rem] font-[700] flex-shrink-0 h-full flex items-center"
+                                onMouseOver={() => {
+                                    setDirectionToView(prevMenuIndex > index ? 'right' : 'left')
+                                    setPrevMenuIndex(index)                                        
+                                    setMegaMenuIndex(index);
+                                }}
+                                onMouseOut={() => setMegaMenuIndex(null)}
+                                key={index}
+                            >
+                                <span>{shortcutText(category.label, 15, 12)}</span>
+                                {megeMenuIndex === index && category.sections?.length && (
+                                    <div
+                                        className="fixed left-0 right-0 w-screen bg-[#0004] mt-[29px] megamenu z-50"
+                                    >
+                                        <div>
+                                            <MegaMenu directionToView={directionToView ??'right'}>
+                                               <div className="grid grid-cols-3 pt-4">
+                                                   {
+                                                        category.sections.map((section) => {
+                                                            return(
+                                                               <div className="section">
+                                                                     <p>{section.label}</p>
+                                                                    <ul>
+                                                                       {
+                                                                            section.categories?.splice(0,5).map((category,index) => {
+                                                                                return (<p>{category.label}</p>)
+                                                                            })
+                                                                       }
+                                                                    </ul>
+                                                               </div>
+                                                            )
+                                                        })
+                                                   }
+                                               </div>
+                                            </MegaMenu>
+                                        </div>
+                                    </div>
+                                )}
                             </li>
-                        )
+                        );
                     })
                 }
                 </ul>
