@@ -2,13 +2,18 @@
 
 import { shortcutText } from "@/lib/shortcutText";
 import { CategorySchema } from "@/schema/CategorySchema";
+
 import Image from "next/image";
+import { MegaMenu } from "./MegaMenu";
+
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
     const menuRef = useRef<HTMLDivElement>(null);
     const [scrollableLeft,setScrollableLeft] = useState<boolean>(false);
     const [scrollableRight,setScrollableRight] = useState<boolean>(true);
+    let [megeMenuIndex,setMegaMenuIndex] = useState<number | null>(4);
 
     useEffect(() => {
         handlePushArrowVisiablitiy();
@@ -17,12 +22,24 @@ export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
     let handlePushArrowVisiablitiy = () => {
         if (!menuRef.current) return;
 
-        if (menuRef.current.scrollLeft - 100 <= 0) setScrollableLeft(false);
-        else setScrollableLeft(true)
+        // If scrolled all the way to the left
+        if (menuRef.current.scrollLeft <= 0) {
+            setScrollableLeft(false);
+            setScrollableRight(true);
+            return;
+        }
 
-        console.log(menuRef.current.scrollLeft - 100 , menuRef.current.clientWidth)
-        if (menuRef.current.scrollLeft - 100 >= menuRef.current.clientWidth) setScrollableRight(false);
-        else setScrollableRight(true)
+        // If scrolled all the way to the right
+        console.log(menuRef.current.scrollLeft + menuRef.current.clientWidth , menuRef.current.scrollWidth)
+        if (menuRef.current.scrollLeft + menuRef.current.clientWidth >= menuRef.current.scrollWidth - 10) {
+            setScrollableRight(false);
+            setScrollableLeft(true);
+            return;
+        }
+
+        // In the middle
+        setScrollableLeft(true);
+        setScrollableRight(true);
     } 
 
     function pushMenu (direction:string) {
@@ -49,48 +66,72 @@ export function MainMenu({categoriesList}:{categoriesList: CategorySchema[]}) {
     }
 
     return (
-        <div className="overflow-scroll no-scrollbar" ref={menuRef}>                
-            {
-                scrollableLeft && <div 
-                    className="absolute flex items-center px-[10px] cursor-pointer left-0 bottom-0 bg-gradient-to-r from-white to-transparent w-[200px] h-full select-none"
-                    onClick={() => pushMenu('left')}
-                >
-                    <Image 
-                        src="/icons/chevron-down.svg" 
-                        alt="Nest Mart & Grocery Logo" 
-                        className="rotate-90"
-                        width={15} 
-                        height={15}
-                    />
-                </div>
-            }
-            
-           {
-                scrollableRight &&  <div 
-                    className="absolute flex items-center justify-end px-[10px] cursor-pointer right-0 bottom-0 bg-gradient-to-r from-transparent to-white w-[200px] h-full select-none"
-                    onClick={() => pushMenu('right')}
-                >
-                    <Image 
-                        src="/icons/chevron-down.svg" 
-                        alt="Nest Mart & Grocery Logo" 
-                        className="rotate-270"
-                        width={15} 
-                        height={15}
-                    />
-                </div>
-           }
+        <div className="relative h-full">
+            <div className="overflow-scroll  no-scrollbar h-full" ref={menuRef}>                
+                {
+                    scrollableLeft && <div 
+                        className="absolute flex items-center px-[10px] cursor-pointer left-0 bottom-0 bg-gradient-to-r from-white to-transparent w-[200px] h-full select-none"
+                        onClick={() => pushMenu('left')}
+                    >
+                        <Image 
+                            src="/icons/chevron-down.svg" 
+                            alt="Nest Mart & Grocery Logo" 
+                            className="rotate-90"
+                            width={15} 
+                            height={15}
+                        />
+                    </div>
+                }
+                    
+                {
+                    scrollableRight &&  <div 
+                        className="absolute flex items-center justify-end px-[10px] cursor-pointer right-0 bottom-0 bg-gradient-to-r from-transparent to-white w-[200px] h-full select-none"
+                        onClick={() => pushMenu('right')}
+                    >
+                        <Image 
+                            src="/icons/chevron-down.svg" 
+                            alt="Nest Mart & Grocery Logo" 
+                            className="rotate-270"
+                            width={15} 
+                            height={15}
+                        />
+                    </div>
+                }
 
-            <ul className="flex flex-nowrap 4xl:gap-[3.3rem] gap-[1.9rem] animate-scroll">
-            {
-                categoriesList.map((category,index) => {
-                    return (
-                        <li className="text-nowrap 4xl:text-[1rem] text-[0.90rem] font-[700] flex-shrink-0" key={index}>
-                            <span>{shortcutText(category.label,15,12)}</span>
-                        </li>
-                    )
-                })
-            }
-            </ul>
-        </div>
+                <ul 
+                    className="flex items-center flex-nowrap 4xl:gap-[3.3rem] gap-[1.9rem] animate-scroll h-full"
+                    onMouseLeave={() => {
+                        setMegaMenuIndex(null)
+                    }}
+                >
+                {
+                    categoriesList.map((category,index) => {
+                        return (
+                            <li className="text-nowrap 4xl:text-[1rem] text-[0.90rem] font-[700] flex-shrink-0" key={index}>
+                                <span>{shortcutText(category.label,15,12)}</span>
+                                <AnimatePresence>
+                                    {
+                                        megeMenuIndex == index && 
+                                        <motion.div 
+                                            initial={{ opacity: 0}}
+                                            animate={{ opacity: 1}}
+                                            exit={{ opacity: 0 }} 
+                                            className="fixed left-0 right-0 w-screen bg-[#0004] mt-[29px] megamenu z-50"
+                                        >
+                                            { 
+                                                <MegaMenu>
+                                                    <p>dasdasd</p>
+                                                </MegaMenu>
+                                            }
+                                        </motion.div>
+                                    }
+                                </AnimatePresence>
+                            </li>
+                        )
+                    })
+                }
+                </ul>
+            </div>
+       </div>
     )
 }
